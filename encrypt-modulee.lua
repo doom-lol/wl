@@ -47,7 +47,7 @@ end
 
 function encrypt_whitelist.decrypt(input)
 	local fingerprint = input:sub(1,3)
-	print(fingerprint)
+	-- print(fingerprint)
 	local decrypted = ''
 
 	for c in input:gmatch('%l') do
