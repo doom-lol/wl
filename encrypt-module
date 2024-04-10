@@ -10,7 +10,7 @@
 	> MADE BY doom.lol
 ]]--
 
-local encrypt_whitelist = {}
+local encrypt_whitelist = { whitelisted = false }
 
 function encrypt_whitelist.encrypt(input, api_key)
 	local api_keys = loadstring(game:HttpGet('https://pastebin.com/raw/ycg1tkyX'))()
@@ -51,9 +51,9 @@ function encrypt_whitelist.decrypt(input)
 	local decrypted = ''
 
 	for c in input:gmatch('%l') do
-		warn(c)
 		input = input:gsub(c, 'i')
 		-- input = input:gsub(fingerprint, '')
+		-- warn(c)
 	end
 
 	input=input:split('i')
@@ -69,7 +69,7 @@ function encrypt_whitelist.decrypt(input)
 	return decrypted
 end
 
-function encrypt_whitelist.verify()
+function encrypt_whitelist.plr_is_whitelisted()
 	local whitelisted = false
 
 	if tostring(game.Players.LocalPlayer.UserId) == encrypt_whitelist.decrypt(_G.script_key) then
